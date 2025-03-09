@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrace Spare Parts</title>
+    <style>
+        /* Main CSS */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #111;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: 0.3s;
+        }
+        
+        nav a:hover {
+            color: #4CAF50;
+        }
+        
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            margin-top: 60px;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+        
+        .welcome-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-color: rgba(0,0,0,0.6);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .welcome-overlay h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+        
+        /* About Section */
+        #about {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                        url('file:///C:/Users/Hp/Desktop/html%20vscode/thraceparts/image/office-bg.jpg') center/cover;
+            background-blend-mode: darken;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        #about p {
+            margin-bottom: 25px;
+            background-color: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* Products Section */
+        .products-wrapper {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+        
+        .products-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .product-card {
+            min-width: 300px;
+            height: 400px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        
+        .product-title {
+            color: #4CAF50 !important;
+            margin: 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(76, 175, 80, 0.8);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: 0.3s;
+        }
+
+        .scroll-arrow:hover {
+            background: #4CAF50;
+        }
+
+        .arrow-left {
+            left: 10px;
+        }
+
+        .arrow-right {
+            right: 10px;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            max-width: 400px;
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .contact-info h3 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #222;
+            border-radius: 5px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            max-width: 400px;
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #222;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button[type="submit"] {
+            background: #4CAF50;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        
+        button[type="submit"]:hover {
+            background: #45a049;
+        }
+        
+        footer {
+            background-color: #111;
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-info,
+            .contact-form {
+                width: 100%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Thrace Spare Parts</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#products">Products</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero-section">
+        <img src="file:///C:/Users/Hp/Desktop/html%20vscode/thraceparts/image/hero-image.jpg" 
+             alt="Engine components" 
+             class="hero-image">
+        <div class="welcome-overlay">
+            <h1>Thrace Spare Parts</h1>
+            <p>Your Trusted Partner in Automotive Solutions</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <p>Thrace Spare Parts has established itself as one of the leading companies in the supply and export of high-quality OEM products in the automotive sector, with over 15 years of experience and rigorous work principles. Our company offers a wide range of products—including filters, brake pads, flywheels, brake discs, and other automotive solutions—ensuring superior quality standards in both local and international markets.</p>
+
+            <p>Our accumulated expertise, combined with our team of specialists who closely monitor industry developments, supports our objective of delivering the most suitable solutions to meet customer expectations and guaranteeing quality assurance at every stage of the supply chain. Reliability, transparency, and integrity are among our core values, reflecting our commitment to establishing long-term business relationships.</p>
+
+            <p>Aligned with our corporate vision, we continuously strive for improvement and innovation to offer swift and effective solutions to our customers' evolving demands. Our quality control processes adhere to international standards, and our robust supplier network enables us to be recognized as a reliable business partner in the industry.</p>
+        </div>
+    </section>
+
+    <section id="products">
+        <h2>Products</h2>
+        <div class="products-wrapper">
+            <div class="scroll-arrow arrow-left">❮</div>
+            <div class="scroll-arrow arrow-right">❯</div>
+            <div class="products-container">
+                <div class="product-card">
+                    <img src="file:///C:/Users/Hp/Desktop/html%20vscode/thraceparts/image/filters.png" 
+                         alt="Filters" 
+                         class="product-image">
+                    <h3 class="product-title">Filters</h3>
+                    <p>High performance air filters</p>
+                </div>
+                
+                <div class="product-card">
+                    <img src="file:///C:/Users/Hp/Desktop/html%20vscode/thraceparts/image/brake-discs.png" 
+                         alt="Brake Discs" 
+                         class="product-image">
+                    <h3 class="product-title">Brake Discs</h3>
+                    <p>Premium quality brake discs</p>
+                </div>
+                
+                <div class="product-card">
+                    <img src="file:///C:/Users/Hp/Desktop/html%20vscode/thraceparts/image/brake-pads.png" 
+                         alt="Brake Pads" 
+                         class="product-image">
+                    <h3 class="product-title">Brake Pads</h3>
+                    <p>Durable brake pads</p>
+                </div>
+                
+                <div class="product-card">
+                    <img src="file:///C:/Users/Hp/Desktop/html%20vscode/thraceparts/image/flywheel.png" 
+                         alt="Flywheel" 
+                         class="product-image">
+                    <h3 class="product-title">Flywheel</h3>
+                    <p>OE Quality Flywheels</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <ul>
+                    <li>📧 Email: <a href="mailto:info@thracespareparts.com" style="color: #4CAF50;">info@thracespareparts.com</a></li>
+                    <li>📞 Phone: <a href="tel:+905324362036" style="color: #4CAF50;">+90 532 436 20 36</a></li>
+                    <li>📍 Address: Çorlu, Tekirdağ, Turkey</li>
+                </ul>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject" required>
+                <textarea placeholder="Your Message" rows="6" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Thrace Spare Parts - All rights reserved</p>
+    </footer>
+
+    <script>
+        // Product Scroll Arrows
+        const productsContainer = document.querySelector('.products-container');
+        const scrollAmount = 300; 
+
+        document.querySelector('.arrow-left').addEventListener('click', () => {
+            productsContainer.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        document.querySelector('.arrow-right').addEventListener('click', () => {
+            productsContainer.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        // Dynamic Year Update
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Form Handling
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            // Form submission logic here
+        });
+
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
